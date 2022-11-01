@@ -28,6 +28,10 @@
 		C8DE740C291152020028587B /* vec3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
 		C8DE741129115A700028587B /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		C8DE741329115CE50028587B /* ray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
+		C8DE741829117D330028587B /* hittable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hittable.h; sourceTree = "<group>"; };
+		C8DE741929117DF30028587B /* sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sphere.h; sourceTree = "<group>"; };
+		C8DE741B291188C90028587B /* hittable_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hittable_list.h; sourceTree = "<group>"; };
+		C8DE741C29118AE60028587B /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,10 @@
 				C8DE740C291152020028587B /* vec3.hpp */,
 				C8DE741129115A700028587B /* color.h */,
 				C8DE741329115CE50028587B /* ray.h */,
+				C8DE741829117D330028587B /* hittable.h */,
+				C8DE741929117DF30028587B /* sphere.h */,
+				C8DE741B291188C90028587B /* hittable_list.h */,
+				C8DE741C29118AE60028587B /* utils.h */,
 			);
 			path = raytracingInOneWeekend;
 			sourceTree = "<group>";
