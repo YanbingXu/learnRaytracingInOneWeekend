@@ -60,6 +60,11 @@ public:
         return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
     }
     
+    bool near_zero()const{
+        const auto s = 1e-8;
+        return (fabs(e[0])<s) && (fabs(e[1])<s) && (fabs(e[2])<s);
+    }
+    
 public:
     double e[3];
 };
@@ -79,6 +84,10 @@ inline vec3 operator+(const vec3 &u, const vec3 &v){
 
 inline vec3 operator-(const vec3 &u, const vec3 &v){
     return vec3(u.e[0]-v.e[0], u.e[1]-v.e[1], u.e[2]-v.e[2]);
+}
+
+inline vec3 operator*(const vec3 &u, const vec3 &v) {
+    return vec3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
 }
 
 inline vec3 operator*(double t, const vec3 &v){
@@ -131,6 +140,11 @@ vec3 random_in_hemisphere(const vec3& normal) {
         return in_unit_sphere;
     else
         return -in_unit_sphere;
+}
+
+// The reflected ray direction in red is just 𝐯+2𝐛. In our design, 𝐧 is a unit vector, but 𝐯 may not be. The length of 𝐛 should be 𝐯⋅𝐧. Because 𝐯 points in, we will need a minus sign, yielding
+vec3 reflect(const vec3& v, const vec3& n){
+    return v-2*dot(n,v)*n;
 }
 
 #endif /* vec3_hpp */

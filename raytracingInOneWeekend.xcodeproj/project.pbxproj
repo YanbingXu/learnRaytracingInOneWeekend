@@ -33,6 +33,7 @@
 		C8DE741B291188C90028587B /* hittable_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hittable_list.h; sourceTree = "<group>"; };
 		C8DE741C29118AE60028587B /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		C8DE741E2913ADF50028587B /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		C8DE742029142CF50028587B /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 				C8DE741B291188C90028587B /* hittable_list.h */,
 				C8DE741C29118AE60028587B /* utils.h */,
 				C8DE741E2913ADF50028587B /* camera.h */,
+				C8DE742029142CF50028587B /* material.h */,
 			);
 			path = raytracingInOneWeekend;
 			sourceTree = "<group>";

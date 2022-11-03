@@ -8,11 +8,14 @@
 #ifndef hittable_h
 #define hittable_h
 
-#include "ray.h"
+#include "utils.h"
+
+class material;
 
 struct hit_record {
     point3 p;
     vec3 normal;
+    shared_ptr<material>mat_ptr;
     double t;
     // 我们可以把决定surface side留在geometry intersection或者留在着色时，这里由于我们着色的type更多计算更大，因此在intersection的时候就决定surface side
     bool front_face;
