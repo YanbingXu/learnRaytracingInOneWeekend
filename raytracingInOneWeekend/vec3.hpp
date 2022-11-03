@@ -51,6 +51,15 @@ public:
     double length_squared() const {
         return e[0] * e[0] + e[1]*e[1] + e[2]*e[2];
     }
+    
+    inline static vec3 random(){
+        return vec3(random_double(), random_double(), random_double());
+    }
+    
+    inline static vec3 random(double min, double max){
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
+    
 public:
     double e[3];
 };
@@ -97,4 +106,31 @@ inline vec3 cross(const vec3& u, const vec3& v){
 inline vec3 unit_vector(vec3 v){
     return v / v.length();
 }
+
+// We need a way to pick a random point in a unit radius sphere. We’ll use what is usually the easiest algorithm: a rejection method. First, pick a random point in the unit cube where x, y, and z all range from −1 to +1. Reject this point and try again if the point is outside the sphere.
+vec3 random_in_unit_sphere(){
+    while (true) {
+        auto p = vec3::random(-1,1);
+        if (p.length_squared() > 1) {
+            continue;
+        }
+        return p;
+    }
+}
+
+// lambertian distribution
+// True Lambertian has the probability higher for ray scattering close to the normal, but the distribution is more uniform. This is achieved by picking random points on the surface of the unit sphere, offset along the surface normal. Picking random points on the unit sphere can be achieved by picking random points in the unit sphere, and then normalizing those.
+vec3 random_on_unit_sphere(){
+    return unit_vector(random_in_unit_sphere());
+}
+
+// another random distribution
+vec3 random_in_hemisphere(const vec3& normal) {
+    vec3 in_unit_sphere = random_in_unit_sphere();
+    if (dot(in_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+        return in_unit_sphere;
+    else
+        return -in_unit_sphere;
+}
+
 #endif /* vec3_hpp */
