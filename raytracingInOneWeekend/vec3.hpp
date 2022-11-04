@@ -147,4 +147,14 @@ vec3 reflect(const vec3& v, const vec3& n){
     return v-2*dot(n,v)*n;
 }
 
+// 𝐑′⊥=𝜂/𝜂′(𝐑+cos𝜃𝐧)
+// 𝐑′∥=−sqrt(1−|𝐑′⊥|^2)*𝐧
+vec3 refract(const vec3& ray_in_unit, const vec3& n, double refract_ratio){
+    auto cos_theta = fmin(dot(-ray_in_unit, n), 1.0); // fmin(x, 1)
+    vec3 r_out_perp = refract_ratio * (ray_in_unit + cos_theta * n);
+    vec3 r_out_parallel = -sqrt(1-r_out_perp.length_squared())* n;
+    
+    return r_out_perp + r_out_parallel;
+}
+
 #endif /* vec3_hpp */
