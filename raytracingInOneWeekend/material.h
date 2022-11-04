@@ -38,12 +38,12 @@ public:
 
 class metal : public material {
 public:
-    metal(const color& a) : albedo(a) {}
+    metal(const color& a, double fuzz) : albedo(a), fuzzy(fuzz > 1.0 ? 1.0 : fuzz) {}
     
     virtual bool scatter(const ray& ray_in, const hit_record& rec, color& attenuation, ray& scattered) const override {
         auto reflect_dir = reflect(unit_vector(ray_in.direction()), rec.normal);
         
-        scattered = ray(rec.p, reflect_dir);
+        scattered = ray(rec.p, reflect_dir + fuzzy * random_on_unit_sphere());
         attenuation = albedo;
         
         return (dot(scattered.direction(), rec.normal) > 0);
@@ -52,6 +52,7 @@ public:
     
 public:
     color albedo;
+    double fuzzy;
 };
 
 
