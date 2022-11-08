@@ -26,7 +26,7 @@ public:
         if (scatter_dir.near_zero()) {
             scatter_dir = rec.normal;
         }
-        scattered = ray(rec.p, scatter_dir);
+        scattered = ray(rec.p, scatter_dir, ray_in.time());
         attenuation = albedo;
         
         return true;
@@ -43,7 +43,7 @@ public:
     virtual bool scatter(const ray& ray_in, const hit_record& rec, color& attenuation, ray& scattered) const override {
         auto reflect_dir = reflect(unit_vector(ray_in.direction()), rec.normal);
         
-        scattered = ray(rec.p, reflect_dir + fuzzy * random_on_unit_sphere());
+        scattered = ray(rec.p, reflect_dir + fuzzy * random_on_unit_sphere(), ray_in.time());
         attenuation = albedo;
         
         return (dot(scattered.direction(), rec.normal) > 0);
@@ -77,7 +77,7 @@ public:
             refract_dir = refract(ray_in_unit, rec.normal, refraction_ratio);
         }
         
-        scattered = ray(rec.p, refract_dir);
+        scattered = ray(rec.p, refract_dir, ray_in.time());
         return true;
     }
     

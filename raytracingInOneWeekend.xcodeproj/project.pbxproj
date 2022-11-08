@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C84ECAD6291AAF5800DD5CBF /* moving_sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moving_sphere.h; sourceTree = "<group>"; };
 		C8DE7400291130510028587B /* raytracingInOneWeekend */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = raytracingInOneWeekend; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8DE7403291130510028587B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C8DE740C291152020028587B /* vec3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 				C8DE741C29118AE60028587B /* utils.h */,
 				C8DE741E2913ADF50028587B /* camera.h */,
 				C8DE742029142CF50028587B /* material.h */,
+				C84ECAD6291AAF5800DD5CBF /* moving_sphere.h */,
 			);
 			path = raytracingInOneWeekend;
 			sourceTree = "<group>";

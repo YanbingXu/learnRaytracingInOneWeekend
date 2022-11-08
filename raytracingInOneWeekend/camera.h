@@ -17,7 +17,9 @@ public:
            point3 lookat,
            vec3   vup,
            double vfov, // vertical field-of-view in degrees
-           double aspect_ratio
+           double aspect_ratio,
+           double _time0,
+           double _time1
            ){
         auto theta = degrees_to_radians(vfov);
         auto h = tan(theta / 2);
@@ -39,10 +41,13 @@ public:
         horizontal = viewport_width * u;
         vertical = viewport_height * v;
         lower_left_corner = origin - horizontal/2 - vertical/2 - w;
+        
+        time0 = _time0;
+        time1 = _time1;
     }
     
     ray gen_ray(double s, double t){
-        return ray(origin, lower_left_corner+s*horizontal+t*vertical-origin);
+        return ray(origin, lower_left_corner+s*horizontal+t*vertical-origin, random_double(time0, time1));
     }
     
     
@@ -51,6 +56,7 @@ private:
     point3 lower_left_corner;
     vec3 horizontal;
     vec3 vertical;
+    double time0,time1; // shutter open/close times
 };
 
 

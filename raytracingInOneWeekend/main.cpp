@@ -17,6 +17,8 @@
 
 #include "material.h"
 
+#include "moving_sphere.h"
+
 // Coloring background
 color ray_color(const ray& r, const hittable& world, int depth_num){
     hit_record rec;
@@ -59,13 +61,19 @@ int main(int argc, const char * argv[]) {
     auto material_left   = make_shared<dielectric>(1.5);
     auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 1.0);
     
+    auto material_moving = make_shared<lambertian>(color(0.8, 0.1, 0.0));
+    
     world.add(make_shared<sphere>(point3( 0.0, -100.5, -1.0), 100.0, material_ground));
     world.add(make_shared<sphere>(point3( 0.0,    0.0, -1.0),   0.5, material_center));
     world.add(make_shared<sphere>(point3(-1.0,    0.0, -1.0),   0.5, material_left));
     world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right));
+    
+    point3 center(random_double(), 0.2, 0.9*random_double());
+    auto center2 = center + vec3(0, random_double(0,.5), 0);
+    world.add(make_shared<moving_sphere>(center, center2,0.0, 1.0, 0.2, material_moving));
 
     // Camera
-    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 20, aspect_ratio);
+    camera cam(point3(-2,2,1), point3(0,0,-1), vec3(0,1,0), 20, aspect_ratio, 0.0, 1.0);
     
     // Render
     std::cout<<"P3\n"<<image_width<<' ' <<image_height<<"\n255\n";
